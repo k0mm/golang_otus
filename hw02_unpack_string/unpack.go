@@ -7,7 +7,7 @@ import (
 	"unicode"
 )
 
-var ErrInvalidString = errors.New("Invalid string!!!")
+var ErrInvalidString = errors.New("invalid string")
 
 func nextRune(index int, slice []rune) rune {
 	value := '1'
