@@ -7,7 +7,7 @@ import (
 )
 
 // Change to true if needed.
-var taskWithAsteriskIsCompleted = false
+var taskWithAsteriskIsCompleted = true
 
 var text = `Как видите, он  спускается  по  лестнице  вслед  за  своим
 	другом   Кристофером   Робином,   головой   вниз,  пересчитывая
@@ -42,6 +42,11 @@ var text = `Как видите, он  спускается  по  лестни�
 	иногда,  особенно  когда  папа  дома,  он больше любит тихонько
 	посидеть у огня и послушать какую-нибудь интересную сказку.
 		В этот вечер...`
+
+type testCase struct {
+	input    string
+	expected []string
+}
 
 func TestTop10(t *testing.T) {
 	t.Run("no words in empty string", func(t *testing.T) {
@@ -79,4 +84,18 @@ func TestTop10(t *testing.T) {
 			require.Equal(t, expected, Top10(text))
 		}
 	})
+}
+
+func TestTop10SameWord(t *testing.T) {
+	input := "Нога, нога, нога НоГа НОГА! нога?"
+	expected := []string{"нога"}
+
+	require.Equal(t, expected, Top10(input))
+}
+
+func TestTop10FormOfWord(t *testing.T) {
+	input := "ноги? ног? нога? ногу? нога! ног! ноги! ногу!"
+	expected := []string{"ног", "нога", "ноги", "ногу"}
+
+	require.Equal(t, expected, Top10(input))
 }
