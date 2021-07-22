@@ -87,15 +87,15 @@ func TestTop10(t *testing.T) {
 }
 
 func TestTop10SameWord(t *testing.T) {
-	input := "Нога, нога, нога НоГа НОГА! нога?"
-	expected := []string{"нога"}
+	input := "Слово, слово, сЛоВо, СЛОВО, Слово! Слово слово СЛОВО?"
+	expected := []string{"слово"}
 
 	require.Equal(t, expected, Top10(input))
 }
 
-func TestTop10FormOfWord(t *testing.T) {
-	input := "ноги? ног? нога? ногу? нога! ног! ноги! ногу!"
-	expected := []string{"ног", "нога", "ноги", "ногу"}
+func TestTop10FormOfWord2(t *testing.T) {
+	input := " слово, слова, словечки, словишки,"
+	expected := []string{"слова", "словечки", "словишки", "слово"}
 
 	require.Equal(t, expected, Top10(input))
 }
